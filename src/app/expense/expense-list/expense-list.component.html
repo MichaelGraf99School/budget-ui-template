@@ -1,1 +1,59 @@
-Expense List
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Expenses </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list class="ion-no-padding">
+          <ion-item>
+            <ion-icon class="ion-padding" name="swap-vertical-outline"></ion-icon>
+            <ion-select aria-label="Sort" interface="popover" placeholder="Name A-Z">
+              <ion-select-option value="Created at (newest first)">Created at (newest first)</ion-select-option>
+              <ion-select-option value="Created at (oldest first)">Created at (oldest first)</ion-select-option>
+              <ion-select-option value="Name A-Z">Name A-Z</ion-select-option>
+              <ion-select-option value="Name Z-A">Name Z-A</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list class="ion-no-padding">
+          <ion-item>
+            <ion-icon class="ion-padding" name="pricetags-outline"></ion-icon>
+            <ion-select aria-label="Sort" interface="popover" placeholder="Category">
+              <ion-select-option value="Category 1">Category 1</ion-select-option>
+              <ion-select-option value="Category 2">Category 2</ion-select-option>
+              <ion-select-option value="Category 3">Category 3</ion-select-option>
+              <ion-select-option value="Category 4">Category 4</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-item class="ion-no-padding">
+          <ion-icon class="ion-padding" name="Search"></ion-icon>
+          <ion-input label="" placeholder="Search"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list [inset]="true">
+    <ion-item>
+      <ion-icon class="ion-padding" name="alert-outline"></ion-icon>
+      <ion-label>No expenses found</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="openModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+

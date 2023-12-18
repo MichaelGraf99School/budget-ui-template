@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { CategoryModalComponent } from '../category-modal/category-modal.component';
 import { ModalController } from '@ionic/angular';
 import { Category } from '../../shared/domain';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-category-list',
   templateUrl: './category-list.component.html',
 })
 export class CategoryListComponent {
+
   constructor(private readonly modalCtrl: ModalController) {}
 
   async openModal(category?: Category): Promise<void> {
