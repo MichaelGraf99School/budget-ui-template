@@ -27,8 +27,12 @@ export class CategoryListComponent {
   }
 
   async openModal(category?: Category): Promise<void> {
-    const modal = await this.modalCtrl.create({ component: CategoryModalComponent });
+    const modal = await this.modalCtrl.create({
+      component: CategoryModalComponent,
+      componentProps: { category: category ? { ...category } : {} },
+    });
     modal.present();
+
     const { role } = await modal.onWillDismiss();
     if (role === 'refresh') this.reloadCategories();
   }
@@ -54,8 +58,7 @@ export class CategoryListComponent {
         next: (categories) => {
           if (this.searchCriteria.page === 0 || !this.categories) this.categories = [];
           this.categories.push(...categories.content);
-          this.lastPageReached = categories.last;
-        },
+          this.lastPageReached = categories.last;},
         error: (error) => this.toastService.displayErrorToast('Could not load categories', error),
       });
   }
