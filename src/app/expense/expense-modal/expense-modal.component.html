@@ -1,16 +1,65 @@
 <ion-header>
-  <ion-grid>
-    <ion-row>
-      <ion-button (click)="cancel()" fill="clear">
-        <ion-icon class="ion-padding" name="chevron-back-outline">
-        </ion-icon>Back</ion-button>
-      <ion-title>Add Expense</ion-title>
-      <ion-button (click)="save()" fill="clear">
-        <ion-icon class="ion-padding" name="save-outline">
-        </ion-icon>Save</ion-button>
-    </ion-row>
-  </ion-grid>
-</ion-header>
-<ion-content>
+  <ion-toolbar>
+    <ion-buttons slot="start" (click)='cancel()'>
+      <ion-button color="medium" (click)="cancel()">
+        <ion-icon slot="start" name="close"></ion-icon>
+        Cancel
+      </ion-button>
+    </ion-buttons>
 
+    <ion-title>Add Expense</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">
+        <ion-icon slot="start" name="save"></ion-icon>
+        Save
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-item>
+    <ion-icon name="text" slot="start"></ion-icon>
+    <ion-input maxlength="40" placeholder="Enter the expenses name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="pricetag" slot="start"></ion-icon>
+
+    <ion-select interface="popover" placeholder="Choose a category">
+      <ion-select-option>Kategorie 1</ion-select-option>
+    </ion-select>
+
+    <ion-button slot="end">
+      <ion-icon slot="icon-only" name="add">
+      </ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="cash" slot="start"></ion-icon>
+    <ion-input type="number" inputmode="decimal" placeholder="Enter the amount in CHF" step="0.01"></ion-input>
+    <ion-note slot="end">
+      CHF
+    </ion-note>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-datetime-button datetime="datetime">
+    </ion-datetime-button>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime presentation='date' id='datetime'></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-item>
+
+  <ion-fab slot='fixed' vertical='bottom' horizontal='end'>
+    <ion-fab-button (click)='delete()' color='danger'>
+      <ion-icon name='trash-outline'></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
