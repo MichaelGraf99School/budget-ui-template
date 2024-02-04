@@ -6,38 +6,38 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
+
+
+  <ion-grid class="ion-margin">
     <ion-row>
-      <ion-col>
-        <ion-list class="ion-no-padding">
-          <ion-item>
-            <ion-icon class="ion-padding" name="swap-vertical-outline"></ion-icon>
-            <ion-select aria-label="Sort" interface="popover" placeholder="Name A-Z">
-              <ion-select-option value="Created at (newest first)">Created at (newest first)</ion-select-option>
-              <ion-select-option value="Created at (oldest first)">Created at (oldest first)</ion-select-option>
-              <ion-select-option value="Name A-Z">Name A-Z</ion-select-option>
-              <ion-select-option value="Name Z-A">Name Z-A</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+      <ion-col size="12" size-sm="4">
+        <ion-item>
+          <ion-icon class="ion-margin" name="swap-vertical"></ion-icon>
+          <ion-select interface="popover" placeholder="Name A-Z">
+            <ion-select-option value="Created at (newest first)">Created at (newest first)</ion-select-option>
+            <ion-select-option value="Created at (oldest first)">Created at (oldest first)</ion-select-option>
+            <ion-select-option value="Name A-Z">Name A-Z</ion-select-option>
+            <ion-select-option value="Name Z-A">Name Z-A</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
-      <ion-col>
-        <ion-list class="ion-no-padding">
-          <ion-item>
-            <ion-icon class="ion-padding" name="pricetags-outline"></ion-icon>
-            <ion-select aria-label="Sort" interface="popover" placeholder="Category">
-              <ion-select-option value="Category 1">Category 1</ion-select-option>
-              <ion-select-option value="Category 2">Category 2</ion-select-option>
-              <ion-select-option value="Category 3">Category 3</ion-select-option>
-              <ion-select-option value="Category 4">Category 4</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
+
+      <ion-col size="12" size-sm="4">
+        <ion-item>
+          <ion-icon class="ion-margin" name="pricetags"></ion-icon>
+          <ion-select interface="popover" placeholder="Category">
+            <ion-select-option value="Category 1">Category 1</ion-select-option>
+            <ion-select-option value="Category 2">Category 2</ion-select-option>
+            <ion-select-option value="Category 3">Category 3</ion-select-option>
+            <ion-select-option value="Category 4">Category 4</ion-select-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
-      <ion-col>
-        <ion-item class="ion-no-padding">
-          <ion-icon class="ion-padding" name="Search"></ion-icon>
-          <ion-input label="" placeholder="Search"></ion-input>
+
+      <ion-col size="12" size-sm="4">
+        <ion-item>
+          <ion-icon class="ion-margin" name="search" slot="start"></ion-icon>
+          <ion-input maxlength="40" placeholder="Search"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -56,4 +56,18 @@
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-button (click)="addMonths(-1)">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      <ion-title class="ion-text-left">{{ date | date:'MMMM yyyy' }}</ion-title>
+      <ion-button (click)="addMonths(1)">
+        <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
 
