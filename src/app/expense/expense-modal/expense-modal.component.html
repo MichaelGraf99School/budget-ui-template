@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-progress-bar *ngIf="submitting" type="indeterminate"></ion-progress-bar>
     <ion-buttons slot="start" (click)='cancel()'>
       <ion-button color="medium" (click)="cancel()">
         <ion-icon slot="start" name="close"></ion-icon>
@@ -10,7 +11,7 @@
     <ion-title>Add Expense</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button (click)="save()">
+      <ion-button (click)="save()" [disabled]="expenseForm.pristine || expenseForm.invalid || submitting">
         <ion-icon slot="start" name="save"></ion-icon>
         Save
       </ion-button>
@@ -18,21 +19,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" [formGroup]="expenseForm">
 
   <ion-item>
     <ion-icon name="text" slot="start"></ion-icon>
-    <ion-input maxlength="40" placeholder="Enter the expenses name"></ion-input>
+    <ion-input maxlength="40" placeholder="Enter the expenses name" formControlName='name' [disabled]='submitting'></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-icon name="pricetag" slot="start"></ion-icon>
 
-    <ion-select interface="popover" placeholder="Choose a category">
-      <ion-select-option>Kategorie 1</ion-select-option>
+    <ion-select interface="popover" placeholder="Choose a category" formControlName="categoryId">
+      <ion-select-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-select-option>
     </ion-select>
 
-    <ion-button slot="end">
+    <ion-button slot="end" (click)="showCategoryModal ()">
       <ion-icon slot="icon-only" name="add">
       </ion-icon>
     </ion-button>
@@ -40,7 +41,7 @@
 
   <ion-item>
     <ion-icon name="cash" slot="start"></ion-icon>
-    <ion-input type="number" inputmode="decimal" placeholder="Enter the amount in CHF" step="0.01"></ion-input>
+    <ion-input type="number" inputmode="decimal" placeholder="Enter the amount in CHF" step="0.01" formControlName="amount"></ion-input>
     <ion-note slot="end">
       CHF
     </ion-note>
@@ -52,10 +53,11 @@
     </ion-datetime-button>
     <ion-modal [keepContentsMounted]="true">
       <ng-template>
-        <ion-datetime presentation='date' id='datetime'></ion-datetime>
+        <ion-datetime presentation='date' id='datetime' formControlName='date'></ion-datetime>
       </ng-template>
     </ion-modal>
   </ion-item>
+
 
   <ion-fab slot='fixed' vertical='bottom' horizontal='end'>
     <ion-fab-button (click)='delete()' color='danger'>
